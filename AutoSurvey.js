@@ -12,12 +12,17 @@
 (function() {
     'use strict';
 
-    var multi = 'Sangat puas';
-    var option = 'Ya';
+    function getRandomOption() {
+        var options = ['Sangat puas', 'Puas', 'Netral'];
+        return options[Math.floor(Math.random() * options.length)];
+    }
 
-    $('.answerlist1:contains('+multi+'), .answerlist1:contains('+option+')').each(function(){
-        $(this).parent().each(function(){
-            $(this).find('.answerlist2').children().click()
-        })
-    });
+    function clickRandomOption() {
+        var randomOption = getRandomOption();
+        $('.answerlist1:contains('+randomOption+')').each(function() {
+            $(this).parent().find('.answerlist2').children().click();
+        });
+    }
+
+    clickRandomOption();
 })();
