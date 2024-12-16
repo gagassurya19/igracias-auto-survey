@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name         AutoSurvey
+// @name         AUTO-FILL Igracias
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Auto Survey Script!
-// @author       iamnubs
-// @match        https://igracias.telkomuniversity.ac.id/survey/index.php*
+// @version      2024-12-16
+// @description  lets burn this surveys
+// @author       you&me
+// @match        https://igracias.telkomuniversity.ac.id/survey/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=ac.id
 // @grant        none
-// @require      http://code.jquery.com/jquery-3.3.1.min.js
 // ==/UserScript==
 
 (function() {
@@ -14,7 +14,7 @@
 
   function clickRandomOptions() {
     // Index yang ingin dikecualikan
-    var excludeIndexes = [0, 1];
+    var excludeIndexes = [0];
 
     // Loop melalui setiap pertanyaan (dengan class 'tb')
     $('div.tb').each(function() {
