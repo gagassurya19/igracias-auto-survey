@@ -10,19 +10,34 @@
 // ==/UserScript==
 
 (function() {
-    'use strict';
+  'use strict';
 
-    function getRandomOption() {
-        var options = ['Sangat puas', 'Puas', 'Netral'];
-        return options[Math.floor(Math.random() * options.length)];
-    }
+  function clickRandomOptions() {
+    // Index yang ingin dikecualikan
+    var excludeIndexes = [0, 1];
 
-    function clickRandomOption() {
-        var randomOption = getRandomOption();
-        $('.answerlist1:contains('+randomOption+')').each(function() {
-            $(this).parent().find('.answerlist2').children().click();
-        });
-    }
+    // Loop melalui setiap pertanyaan (dengan class 'tb')
+    $('div.tb').each(function() {
+      var options = [];
 
-    clickRandomOption();
+      // Ambil semua opsi untuk pertanyaan saat ini
+      $(this).next('div#radioX').find('input.opt').each(function(index) {
+        // Jika index tidak ada dalam excludeIndexes, tambahkan ke opsi valid
+        if (!excludeIndexes.includes(index)) {
+          options.push($(this)); // Simpan elemen jQuery, bukan hanya nilainya
+        }
+      });
+
+      // Pastikan ada opsi yang valid untuk dipilih
+      if (options.length > 0) {
+        // Pilih opsi secara acak dari yang valid
+        var randomOption = options[Math.floor(Math.random() * options.length)];
+
+        // Klik opsi yang dipilih
+        randomOption.click();
+      }
+    });
+  }
+
+  clickRandomOptions();
 })();
